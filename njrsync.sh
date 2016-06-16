@@ -7,20 +7,18 @@
 # rsync options :: https://download.samba.org/pub/rsync/rsync.html
 # zip options :: http://www.info-zip.org/mans/zip.html
 ##################################################################################################################
-#path & nom du script & mod debug( 0=false ; 1=true ):
+#path & nom du script 
 SCRIPT=$0
 SCRIPTPATH=$(dirname $SCRIPT)
 SCRIPTNAME=$(basename ${SCRIPT%.*})
-Sdebug=0
+#ROOT ONLY ? :
 SbeROOT=1
-Scolor=1
 #####################################
 #Script Test if in terminal ( verbose OK )
 #fd=1 ; [[ -t "$fd"  ]] && { SinTerm=1 ;}
 [[ -t 1 ]] && { SinTerm=1 ;}
 #####################################
 #ROOT ONLY:
-
 msg_beroot="<!> Must be root to run this script. <!>"
 
 ROOT_UID=0 # Only users with $UID 0 have root privileges.
@@ -40,7 +38,7 @@ Nj_CMDZIP_IF_RSYNC=1
 Nj_CMDZIP_GITCLONE=1
 
 #Rep & Destination ::
-# ${HOSTNAME,,} >> host name in lower case
+# ${HOSTNAME,,} >> hostname in lowercase
 NjGitRep="/home/nj/git"
 NjRepDest="/home/nj/rsyncbackup"
 NjRepZip="/home/nj/rsyncbackupzip"
@@ -64,7 +62,6 @@ fct__CMDRSYNC()
 echo "###LOG INIT###" > $SCRIPTPATH/$SCRIPTNAME.log
 # bash cmd : rsync -ar --delete-after --log-file=FILE --files-from=/dirpath/njrsync.list / /home/nj/rsyncbackup/
 RSYNCCMD=$( $XRSYNC $NjFlags --delete-after --log-file=$SCRIPTPATH/$SCRIPTNAME.log --files-from=$SCRIPTPATH/$SCRIPTNAME.list / $NjRepDest/ )
-
 
 #[[ $RSYNCCMD ]] && echo -e "$RSYNCCMD"
 
