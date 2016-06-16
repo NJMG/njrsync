@@ -1,0 +1,9 @@
+/etc
+/usr/njadm
+/usr/local/njadm
+/usr/share/libpam-script
+/var/spool/cron
+/var/www
+/var/log/apt
+/boot
+/root
